@@ -1,0 +1,120 @@
+Register → POST /register
+{ "email": "user@example.com", "password": "secret123" }
+
+Login → POST /login
+{ "access_token": "eyJ0eXAiOiJKV1Qi..." }
+
+----------------------------------------------------------
+
+*Register*
+
+POST http://localhost:5000/register
+Body (raw JSON):
+
+{ "email": "kiran@example.com", "password": "mypassword" }
+
+
+*Login* (get JWT token) 
+
+POST http://localhost:5000/login
+Body:
+{ "email": "kiran@example.com", "password": "mypassword" }
+
+----------------------------------
+
+     ****   Set Up Postman First  ****
+
+Global Step (for all secured routes)
+After login, copy the access_token
+
+In Postman → Go to Headers
+
+Add:
+    Key: Authorization
+    Value: Bearer <your_access_token_here>
+
+----- 1. Register a New User
+Method: POST
+
+URL: http://localhost:5000/register
+
+Body: (raw, JSON)
+
+{
+  "email": "kiran@example.com",
+  "password": "secret123"
+}
+
+------2. Login to Get JWT Token
+Method: POST
+
+URL: http://localhost:5000/login
+
+Body: (raw, JSON)
+
+{
+  "email": "kiran@example.com",
+  "password": "secret123"
+}
+
+--------------------------------------------------
+
+
+----------------Response
+{
+  "access_token": "eyJ0eXAiOiJKV1QiLCJh..."
+}
+
+
+---------------------------------------------
+
+-----3. Get All Students (Protected)
+Method: GET
+
+URL: http://localhost:5000/students
+
+Headers:
+    Authorization: Bearer <your_token_here>
+
+
+------ 4. Add a Student (Protected)
+Method: POST
+
+URL: http://localhost:5000/students
+
+Headers:
+        Authorization: Bearer <your_token_here>
+        Content-Type: application/json
+
+Body:
+
+{
+  "name": "Kiran Kumar",
+  "email": "kiran@example.com",
+  "skills": ["Python", "MongoDB"]
+}
+
+
+----- 5. Update a Student (Protected)
+Method: PUT
+
+URL: http://localhost:5000/students/<student_id>
+
+Headers:
+
+        Authorization: Bearer <your_token_here>
+        Content-Type: application/json
+
+{
+  "name": "Kiran Updated",
+  "email": "updated@example.com"
+}
+
+-----6. Delete a Student (Protected)
+Method: DELETE
+
+URL: http://localhost:5000/students/<student_id>
+
+Headers:
+        Authorization: Bearer <your_token_here>
+

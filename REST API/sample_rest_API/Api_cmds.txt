@@ -1,0 +1,73 @@
+// For POST command
+{
+  "name": "Kiran Kumar",
+  "email": "kiran@example.com",
+  "skills": ["Python", "AI", "ML"]
+}
+------------------------------------------------
+// Get details from students
+[
+  {
+    "_id": "66aa55993c88f1fd88cc9003",
+    "name": "Kiran Kumar",
+    "email": "kiran@example.com",
+    "skills": ["Python", "AI", "ML"]
+  }
+]
+
+//----------------------------------------------
+//To get ALL Students
+
+Method: GET
+URL: http://localhost:5000/students
+No Body
+
+-------------------------------------------------
+PUT (Update by ID)
+  
+   Method: PUT
+
+URL: http://localhost:5000/students/<id>
+
+Body → raw → JSON:
+
+{
+  "name": "Kiran Updated",
+  "email": "kiran@update.com"
+}
+-----------------------------------------------------
+ DELETE Student by ID
+
+ Method: DELETE
+
+URL: http://localhost:5000/students/<id>
+
+example : http://localhost:5000/students/66b20e3403fc51b7b884e8e9
+
+
+----------------------------------------------------
+################################################
+-----------------------------------------------------
+
+            CURL Commands
+    
+  GET  : curl http://localhost:5000/students
+
+  POST  : 
+
+  curl -X POST http://localhost:5000/students \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Kiran", "email": "kiran@example.com", "skills": ["Python", "MongoDB"]}'
+
+  PUT (Update) :
+
+  curl -X PUT http://localhost:5000/students/<ID> \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Updated Kiran", "email": "new@example.com"}'
+
+  DELETE :
+
+  curl -X DELETE http://localhost:5000/students/<ID>
+  
+  example :
+  curl -X DELETE http://localhost:5000/students/66b20e3403fc51b7b884e8e9
